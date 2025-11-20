@@ -3,14 +3,14 @@ import ProjectDescription
 let project = Project(
     name: "AreaPulse",
     packages: [
-        .package(url: "https://github.com/Moya/Moya.git", .upToNextMinor(from: "15.0.3")),
+        .package(url: "https://github.com/Moya/Moya.git", .upToNextMinor(from: "15.0.0")),
     ],
     settings: .settings(
         configurations: [
-            .debug(name: "SecretOnly", xcconfig: .relativeToRoot("../AreaPulse-iOS/Configuration/Secret.xcconfig")),
+            .debug(name: "SecretOnly", xcconfig: .relativeToRoot("../AreaPulse-iOS/AreaPulse/Core/Utils/Secret.xcconfig")),
             .release(
                 name: "Release",
-                xcconfig: .relativeToRoot("../AreaPulse-iOS/Configuration/Secret.xcconfig")
+                xcconfig: .relativeToRoot("../AreaPulse-iOS/AreaPulse/Core/Utils/Secret.xcconfig")
             )
         ]
     ),
@@ -29,7 +29,7 @@ let project = Project(
                     ],
                 ]
             ),
-            sources: ["AreaPulse/Sources/**"],
+            sources: ["AreaPulse/**"],
             resources: ["AreaPulse/Resources/**"],
             dependencies: [
                 .package(product: "Moya"),
@@ -41,7 +41,7 @@ let project = Project(
             product: .unitTests,
             bundleId: "io.tuist.AreaPulseTests",
             infoPlist: .default,
-            sources: ["AreaPulse/Tests/**"],
+            sources: ["../AreaPulse-iOS/Tests/**"],
             resources: [],
             dependencies: [.target(name: "AreaPulse")]
         ),
